@@ -16,11 +16,19 @@ function panelHand() {
     game.player = this.dataset.option;
     panels.forEach(panel => (panel.style.boxShadow = ''));
     this.style.boxShadow = ' 0 0 0 3px green';
-    console.log(game.player)
+
 }
 
 const computerChoice = () => {
     return panels[Math.floor(Math.random() * 3)].dataset.option;
+}
+
+const checkResults = (player, computer) => {
+    if (player === computer) {
+        console.log('draw')
+    } else if ((player === 'paper' && computer === 'rock') || (player === 'rock' && computer === 'scissors') || (player === 'scissors')) {
+        console.log('win');
+    }
 }
 
 const startGame = () => {
@@ -28,8 +36,11 @@ const startGame = () => {
         alert('select hand');
     }
 
-    game.player = computerChoice();
-    console.log('computer' + ' ' + game.player);
+    gamesResult.draws = checkResults(game.computer, game.player);
+    game.computer = computerChoice();
+    console.log('computer' + ' ' + game.computer);
+    console.log('player' + ' ' + game.player);
+
 }
 
 
